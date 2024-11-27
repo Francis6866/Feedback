@@ -5,7 +5,7 @@ let tbody = document.querySelector('tbody')
 let btn = document.getElementById('submit')
 
 
-
+/* addData function */
 const addData = (e) => {
     e.preventDefault();
 
