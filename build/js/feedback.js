@@ -31,7 +31,7 @@ const addData = (e) => {
 
     /* alert('Thank you for your response'); */
 
-    location.href = "/build/displayFeedback.html"
+    location.href = "/Feedback/build/displayFeedback.html"
 
     uName.value = '';
     id.value = '';

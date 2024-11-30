@@ -29,7 +29,8 @@ const handleSubmit = (e) => {
 
     /* alert('Thank you for your response'); */
 
-    location.href = "/build/displayAlc.html"
+    location.href = "/Feedback/build/displayAlc.html"
+    
 
     userName.value = '';
     id.value = '';
