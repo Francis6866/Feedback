@@ -1,11 +1,45 @@
 let userName = document.getElementById('felName');
 let id = document.getElementById('feId');
 let text = document.getElementById('aboutAlc');
-let tbody = document.querySelector('tbody');
 let btn = document.getElementById('submit');
 
+const alcEnd = "http://localhost:3000/about"
 
 const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if(!userName.value || !id.value || !text.value){
+        alert('please fill in all fields')
+        return;
+    }
+
+    const dataObj = {
+        username: userName.value,
+        id: id.value,
+        text: text.value
+    }
+
+    fetch(alcEnd, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataObj)
+    })
+
+    /* alert('Thank you for your response'); */
+
+    location.href = "/build/displayAlc.html"
+
+    userName.value = '';
+    id.value = '';
+    text.value = '';
+
+    console.log(dataObj)
+}
+
+
+/* const handleSubmit = (e) => {
     e.preventDefault()
 
     if(!userName.value || !id.value || !text.value){
@@ -24,7 +58,7 @@ const handleSubmit = (e) => {
     id.value = '';
     text.value = '';
     
-}
+} */
 
 
 btn.addEventListener('click', handleSubmit)

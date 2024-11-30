@@ -1,8 +1,9 @@
 let uName = document.getElementById('felName')
 let id = document.getElementById('feId')
 let feedback = document.getElementById('feedback')
-let tbody = document.querySelector('tbody')
 let btn = document.getElementById('submit')
+
+const alcEnd = "http://localhost:3000/feedbacks"
 
 
 /* addData function */
@@ -14,16 +15,57 @@ const addData = (e) => {
         return;
     }
 
-    tbody.innerHTML += `
-    <tr>
-        <td class='border-4 border-green-900'>${uName.value}</td>
-        <td class='border-4 border-green-900'>${id.value}</td>
-        <td class='border-4 border-green-900'>${feedback.value}</td>
-    </tr>`
-    
+    const dataObj = {
+        username: uName.value ,
+        id: id.value,
+        text: feedback.value
+    }
+
+    fetch(alcEnd, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataObj)
+    })
+
+    /* alert('Thank you for your response'); */
+
+    location.href = "/build/displayFeedback.html"
+
     uName.value = '';
     id.value = '';
     feedback.value = '';
+
+    console.log(dataObj)
 }
 
 btn.addEventListener('click', addData)
+
+
+
+
+
+/* const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if(!userName.value || !id.value || !text.value){
+        alert('please fill in all fields')
+        return;
+    }
+
+    tbody.innerHTML += `
+    <tr>
+        <td class='border-4 border-green-900'>${userName.value}</td>
+        <td class='border-4 border-green-900'>${id.value}</td>
+        <td class='border-4 border-green-900'>${text.value}</td>
+    </tr>`
+    
+    userName.value = '';
+    id.value = '';
+    text.value = '';
+    
+} */
+
+
+btn.addEventListener('click', handleSubmit)
